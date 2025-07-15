@@ -1,0 +1,57 @@
+- Class structure:
+    - 3 hours total.
+    - 50-minute blocks.
+    - 10-minute break between blocks.
+- Kelly will have her office hours on Sundays at 2 pm.
+- Two late assignment submissions. Let us know once you've submitted your late assignment (not before).
+- Make sure you have received and accepted an invitation to join the UWC2-Python organization.
+- Discuss the use of GitHub Classroom, using Assignment 1 as example.
+- For each assignment, create a branch called "dev" and work from there.
+- Discuss my development environment (VSCode).
+- If having issues cloning your assignment:
+    1. Enter "git credential-manager github login" This allows the second authentication command to be executed.
+    2. git init
+    3. git clone <link to your repository>
+
+Lesson 01:
+
+- Key concepts:
+    - Client.
+    - Server.
+    - IP address.
+        - IPv4.
+        - IPv6.
+    - Network ports.
+        - 0:1023 - Reserved.
+        - 1024:65535 - Open.
+    - Network protocol.
+        - HTTP (port 80) and HTTPS (port 443).
+        - Explain that you could technically use a protocol in any port. Port assignment is just a convention.
+        - Ports act as doors in an apartment building.
+    - Python socket module.
+        - import socket
+        - To get port number: socket.getservbyname('ssh')
+        - To get service number: socket.getservbyport(80)
+        - To get the name of the host you're using: socket.gethostname()
+        - IP address of my computer (inside of my home's network): socket.gethostbyname(socket.gethostname())
+        - Mapping a website to their IP address: socket.gethostbyname('google.com')
+- Implementing a client socket.
+    - Code socket_example.py on the CLI.
+    - Explain the meaning of \r\n
+    - Explain the use of "encode" and "decode".
+- Implementing a client server relationship.
+    Demonstrate server_socket.py and client_socket.py in adjacent Python CLI windows.
+- Protocol with socket adventure.
+    - Explain the importance of a protocol.
+    - Introduce the concept of a text adventure game.
+    - Show the three files in the project: client.py, server.py and server.py. Indicate that all code will be done in server.py.
+    - Go briefly over the flow of the program.
+    - Code push_output().
+    - No the None in the return of greet(), that's because there is no room description yet.
+    - Code room_description().
+    - Code get_input().
+    - Code route().
+    - Code move().
+    - Code say().
+    - Code quit().
+- Assigment 1.
