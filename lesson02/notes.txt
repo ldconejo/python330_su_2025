@@ -1,0 +1,46 @@
+- Environment variables.
+    - Unix like:
+        - printenv (to print environment variables).
+        - Setting an environment variable: export BEST_PET='cat'
+        - Retrieving an environment variable's value: echo $BEST_PET
+    - In Python CLI:
+        import os
+        os.environ['BEST_PET'] = "cat"
+        os.environ['BEST_PET']
+        os.environ
+        for variable, value in dict(os.environ).items():
+            print(f"Variable: {variable} - Value: {value} ")
+    - Show how environment variables do not persist between Python CLI and terminal.
+    - Explain that we are only covering Unix-like because that's what you will see in cloud deployments.
+    - Explain how environment variables are useful:
+        - API keys.
+        - Service addresses.
+        - Database addresses.
+        - Port numbers.
+- CGI (Common Gateway Interface):
+    - Still in use, but not as popular.
+    - Relatively easy to implement in a way that allows you to have a Python script return into a browser window.
+    - Create a folder called cgi_examples.
+    - Inside, create a folder called cgi-bin.
+    - Code hello.py.
+        - Highlight how some HTTP rules play a role in the content returned.
+    - Code index.html.
+    - Run by typing: python -m http.server --cgi
+    - Note that hello.py cannot run until the file has been made executable (you can use chmod 755 on hello.py).
+    - Problems with CGI:
+        - Every call to a CGI script is a new process on the server (too much overhead).
+        - No memory sharing between calls to the script, which might be an issue, depending on what you are trying to do.
+- WSGI: Web Server Gateway Interface:
+    - Code wsgi_1.py.
+    - Run from: http://localhost:8080/
+    - Point to the requirements of a WSGI application:
+        - Callable - application() is a function.
+        - Take environment and start_response() as arguments.
+        - Note that the names "environ" and "start_response" are not really mandatory, they're positional arguments.
+    - Note the use of basic templates.
+    - Recommend completing the book application in the second part of the exercise.
+    - Remember exercises are not graded and do not need to be submitted.
+- HTTP server:
+    - Code http_server.py and add some sample files. 
+- Assignment 2:
+    - https://github.com/UWC2-PYTHON/330-su25-assignment-02-ldconejo 

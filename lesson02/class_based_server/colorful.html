@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colorful Sample Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
+      animation: gradientBG 10s ease infinite;
+      background-size: 400% 400%;
+      color: #fff;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.4);
+      text-align: center;
+      padding: 2rem;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #fff700;
+    }
+
+    main {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .box {
+      padding: 1.5rem;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .red { background-color: #ff4c4c; }
+    .orange { background-color: #ff9900; }
+    .yellow { background-color: #ffe600; color: #333; }
+    .green { background-color: #66cc66; }
+    .blue { background-color: #3399ff; }
+    .purple { background-color: #cc66ff; }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.2);
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Welcome to the Colorful World!
+  </header>
+  <main>
+    <div class="box red">This is a bold red box.</div>
+    <div class="box orange">Here's an energetic orange box.</div>
+    <div class="box yellow">Bright and sunny yellow box!</div>
+    <div class="box green">Fresh green box full of life.</div>
+    <div class="box blue">Cool and calm blue box.</div>
+    <div class="box purple">Mystical and creative purple box.</div>
+  </main>
+  <footer>
+    Made with 🎨 and ❤️ (and using a certain LLM)
+  </footer>
+</body>
+</html>
