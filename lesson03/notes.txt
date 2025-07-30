@@ -1,0 +1,77 @@
+- Mention some changes were made to the content due to deprecation warnings.
+- Explain the concept of an API.
+    - Application Programming Interface.
+    - Machines talking to other machines.
+- Explain the concept of REST (Representational State Transfer):
+    - GET: Retrieve data.
+    - POST: Create new data.
+    - PUT: Update existing data.
+    - DELETE: Remove data.
+    - Stateless: The server doesn't need to remember previous interactions to know what to do.
+    - JSON objects are the defacto format.
+- Mention the concept of RPC (Remote Procedure Call) and remind them to look at the topic in the online materials.
+- Explain the idea of interacting with someone's API, in this case, with the Stack Overflow API.
+    - https://api.stackexchange.com/
+    - https://api.stackexchange.com/docs/questions
+- Talk about status codes:
+    HTTP status codes are three-digit numbers that indicate the outcome of a client’s request to a server. They help developers and users understand whether a request was successful, encountered an error, or requires further action.
+
+    1xx – Informational Responses
+    These codes indicate that the request was received and is being processed.
+
+    100 Continue – The server has received the request headers and the client can proceed.
+    2xx – Success Codes
+    These codes confirm that the request was successfully processed.
+
+    200 OK – The request was successful (e.g., retrieving a resource).
+    201 Created – A new resource was successfully created (e.g., user registration).
+    204 No Content – The request was successful, but there is no response body (e.g., successful DELETE request).
+    3xx – Redirection Codes
+    These codes inform the client that further action is needed.
+
+    301 Moved Permanently – The resource has been permanently relocated.
+    302 Found – Temporary redirection to another URL.
+    304 Not Modified – The requested resource hasn’t changed since the last request (used in caching).
+    4xx – Client Error Codes
+    These indicate issues with the client’s request.
+
+    400 Bad Request – The request is malformed or contains invalid data.
+    401 Unauthorized – Authentication is required but not provided or incorrect.
+    403 Forbidden – The client is not allowed to access the resource.
+    404 Not Found – The requested resource does not exist.
+    5xx – Server Error Codes
+    These indicate failures on the server’s side.
+
+    500 Internal Server Error – A generic error when something goes wrong on the server.
+    502 Bad Gateway – The server received an invalid response from an upstream service.
+    503 Service Unavailable – The server is temporarily down, often due to maintenance.
+- RESTful API using CRUD (Create, Read, Update, Delete) and SQLAlchemy.
+    - Talk briefly about Flask.
+    - python -m venv flask_api_venv
+    - source flask_api_venv/bin/activate
+    - python -m pip freeze
+    - python -m pip install flask flask-restful flask-sqlalchemy
+    - mkdir flask_crud_api
+    - touch app.py
+    - Code app.py (intentionally leave DELETE out)
+    - python app.py
+    - python -m pip freeze
+    - python -m pip freeze > requirements.txt
+
+    - Explain that APIs are not usually meant to be interacted with via browser.
+- Manual testing:
+    - python -m pip install requests
+    - code client_test.py
+    - Open a new terminal.
+    - Activate the virtual environment.
+    - Run the app.
+    - Go back to the previous terminal and run python client_test.py
+- API testing:
+    - python -m pip install pytest
+    - touch test_app.py
+    - code test_app.py
+    - Explain the use of a fixture to provide a test client here.
+    - pytest
+        - Show the error because of the missing DELETE verb.
+- Assigment 3:
+    - https://github.com/UWC2-PYTHON/330-su25-assignment-03-ldconejo
