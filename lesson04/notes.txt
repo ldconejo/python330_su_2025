@@ -1,0 +1,53 @@
+- Explain FastAPI and the concept of ASGI.
+- Explain why FastAPI needs uvicorn.
+- Create virtual environment:
+    - python -m venv fastapi_venv
+    - source fastapi_venv/bin/activate
+    - python -m pip freeze --> To show the empty environment.
+- Installing Fast API and uvicorn.
+    - python -m pip install fastapi uvicorn
+    - python -m pip freeze --> To show what gets installed
+- Create directory for FastAPI project.
+    - mkdir fastapi_project
+- Code main.py (only root endpoint).
+- Launch:
+    - uvicorn basic:app --reload
+- Explain the uvicorn command line and the use of --reload
+- Show it on the browser.
+- Show how to use FastAPI parameters.
+    - Add /products/{product_id}
+    - Show in browser: http://127.0.0.1:8000/products/1
+    - Show in browser: http://127.0.0.1:8000/products/amazing_product
+        - Explain the error and how it relates to the type hint in the function.
+        - Remove the type hint and show the result.
+- Showcase automated API documentation with Swagger.
+    - http://127.0.0.1:8000/docs
+- Explain what is Pydantic.
+    - Allows data validation for more complex data structures.
+    - Add Pydantic imports.
+    - Code class Product().
+    - Code /products.
+    - Go back to Swagger and show how you can test the new endpoint.
+- Testing FastAPI (extra):
+    - python -m pip install pytest httpx
+    - Code test_main.py
+    - python -m pip install coverage
+    - python -m coverage run --include=main.py -m pytest test_main.py
+    - python -m coverage report (it will hit 100%)
+- Web scrapping with BeautifulSoup (for the assignment):
+    - Deactivate previous virtual environment.
+    - python -m venv scrapping_venv
+    - source scrapping_venv/bin/activate
+    - Install requests.
+    - Install BeautifulSoup4: pip install BeautifulSoup4
+    - Open the python CLI: python -i
+    - import requests
+    - from bs4 import BeautifulSoup
+    - response = requests.get("http://quotationspage.com/random.php")
+    - response.content --> So that they can see how bad it is.
+    - soup = BeautifulSoup(response.content, "html.parser")
+    - quotes = soup.find_all("dt", class_="quote") --> The underscore is because "class" is a protected word in Python
+    - quotes[0] --> Will show the entire block for a quote
+    - quotes[0].getText()
+- Assignment 4:
+    - You will be using a Flask application to provide you a page to scrape legally.
