@@ -1,0 +1,25 @@
+{% extends "watchlist/base.html" %}
+{% block content %}
+{% for show in all_shows %}
+<div class=""card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{ show.image_url }}" class="img-fluid rounded-start" alt="Image for show">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ show.title }} Season {{ show.season }}</h5>
+                <p class="card-text"><b>Platform:</b> {{ show.platform }}</p>
+                <p class="card-text"><b>Genres:</b>
+                {% for genre in show.genres.all %}{{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                </p>
+                <p class="card-text">
+                    <small class="text-body-secondary">{% if show.watched %}Watched{% else %}Not watched{% endif %}   
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

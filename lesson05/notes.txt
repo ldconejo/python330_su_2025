@@ -1,0 +1,64 @@
+- Django project initial setup:
+    - python -m venv django_venv
+    - source django_venv/bin/activate
+    - python -m pip freeze (show that the environment is empty)
+    - python -m pip install django
+- Create new project:
+    - django-admin startproject django_watchlist
+    - Show the directory structure that gets created.
+        - Highlight the main app, which has the same name as the overall project.
+        - Discuss manage.py's role as central hub for everything in the project.
+            - python manage.py help
+        - Show settings.py.
+        - Go into the new project's directory.
+        - python manage.py runserver
+        - Show the placeholder welcome page.
+        - python manage.py migrate --> Create basic database setup (show db.sqlite3)
+        - python manage.py createsuperuser
+        - Run the server again, briefly show the user interface under /admin
+- Create watchlist app:
+    - python manage.py startapp watchlist
+    - Show the directory structure for the watchlist app.
+    - Add 'watchlist.apps.WatchlistConfig' to INSTALLED_APPS in settings.py. Note that this will effectively connect the new app to the project.
+    - Show DATABASES in settings.py, notice "db.sqlite3".
+    - Create the templates folder for the watchlist app:
+        - cd watchlist
+        - mkdir templates
+        - cd templates
+        - mkdir watchlist
+        - We'll explain the second "watchlist" directory in a moment.
+        - Inside the second watchlist folder, create and code home.html
+        - Edit django_watchlist/urls.py to import TemplateView and add a root path.
+            - Explain how the second watchlist directory makes it easier to identify the template in urls.py.
+            - Explain the use of TemplateView for static pages.
+- Define data models:
+    - Code django_watchlist/watchlist/models.py
+    - Note the similarity between the code in models.py and how database models were setup in Peewee (in Python 320).
+    - Discuss the database schema being implemented.
+- Setup database:
+    - python manage.py makemigrations
+    - python manage.py migrate
+    - Modify django_watchlist/watchlist/admin.py to include the new database tables.
+    - Show the new tables in the admin interface.
+    - Add Netflix, Disney Plus and HBOMax to platforms.
+    - Add a few genres (Action, Comedy, Romance).
+    - Add a few shows (Strange New Worlds, The Pitt).
+- Views and dynamic templates:
+    - Edit django_watchlist/watchlist/views.py to add home_view().
+    - Explain the code that has been added.
+    - Update home.html to be dynamic.
+    - Show the page in the server.
+- DRY: Don't Repeat Yourself.
+    - Code django_watchlist/watchlist/templates/watchlist/base.html
+    - Show the page in the server again.
+- Watchlist template:
+    - Code django_watchlist/watchlist/templates/watchlist/watchlist.html
+    - Edit django_watchlist/watchlist/views.py to import Show and add watchlist_view().
+    - Edit django_watchlist/urls.py to import watchlist_view and add watchlist/ path.
+    - Edit home.html to add a link to the watchlist.
+    - Update one of the shows with a link to an image of the show.
+- Discuss Assignment 5:
+    
+
+
+

@@ -1,0 +1,12 @@
+{% extends "watchlist/base.html" %}
+{% block content %}
+    <p>A web ap for tracking shows to watch on streaming platforms.</p>
+    <h3>My platforms</h3>
+    <!-- This is where we list all platforms in the database -->
+    <ul>
+        {% for platform in platforms %}
+            <li><a href={{ platform.url }}>{{ platform.platform }}</a></li>
+        {% endfor %}
+    </ul>
+    <a class="btn btn-primary" href="{% url 'watchlist' %}" role="button">My Watchlist</a>
+{% endblock %}
