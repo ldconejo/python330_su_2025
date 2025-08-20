@@ -58,7 +58,7 @@
     - Edit home.html to add a link to the watchlist.
     - Update one of the shows with a link to an image of the show.
 - Discuss Assignment 5:
-    
+    - https://github.com/UWC2-PYTHON/330-su25-assignment-05-ldconejo
 
 
 

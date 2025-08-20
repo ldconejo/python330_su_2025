@@ -1,0 +1,23 @@
+- Our starting point in the Django app from last week.
+    - Create a new virtual environment (django_venv).
+    - source django_venv/bin/activate.
+    - python -m pip install django.
+    - python -m pip freeze > requirements.txt.
+    - Go briefly to the admin interface to see what's on each database table.
+- python -m pip freeze > requirements.txt --> Wasn't done last week
+- python -m pip install djangorestframework
+- Edit settings.py to add "rest_framework" to INSTALLED_APPS.
+- Create and code django_watchlist/watchlist/serializers.py
+- Updated django_watchlist/django_watchlist/urls.py to add router support and /api path.
+- Run the server and open http://127.0.0.1:8000/api/ (make sure you're logged in)
+- Go to /api/shows to see the result.
+- Update serializers.py to add final versions of all serializers.
+- Update views.py to add views for platforms and genres
+- Show /api/platforms
+- Show /api/genres
+- Show POSTing a new entry to one or multiple endpoints (Show the "raw data" option as well).
+- Show PUTting by accessing: http://127.0.0.1:8000/api/shows/1
+- Setup watchlist/tests.py
+- python -m pip install requests
+- python manage.py test
+- Assignment 6: https://github.com/UWC2-PYTHON/330-su25-assignment-06-ldconejo

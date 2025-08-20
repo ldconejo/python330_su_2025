@@ -1,3 +1,16 @@
 asgiref==3.9.1
+certifi==2025.8.3
+cffi==1.17.1
+charset-normalizer==3.4.3
+cryptography==45.0.6
+dj-rest-auth==7.0.1
 Django==5.2.5
+django-allauth==65.11.0
+djangorestframework==3.16.1
+idna==3.10
+oauthlib==3.3.1
+pycparser==2.22
+PyJWT==2.10.1
+requests==2.32.5
 sqlparse==0.5.3
+urllib3==2.5.0
