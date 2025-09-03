@@ -1,0 +1,45 @@
+- First break at 7:00 pm.
+- Introduce the concept of serverless.
+    - Explain the cost advantages of a serverless function.
+    - Compare it with low-cost dynos in Heroku.
+- Go to https://aws.amazon.com/
+- Sign in using root user email (my Amazon account).
+- Go into the Lambda Console: https://console.aws.amazon.com/lambda (or click on Lambda)
+- Choose Create a function.
+    - Make sure you keep the Author from Scratch option selected.
+    - Give the function a name: lambda_test.
+    - Select a runtime: The latest one at the time of writing is Python 3.13.
+    - Choose an architecture (this is not terribly important at this point).
+    - Click on create function (it will take a few seconds).
+- Give your function a URL:
+    - Click on the Configuration tab.
+    - In the toolbar, select Function URL.
+    - Click on Create function URL.
+    - Select NONE as authentication option. This will make your function accessible without the need to authenticate your user (you might want to change that for some of your projects, but we are trying to keep it simple here).
+    - Click on Save.
+    - Trying opening the function at the assigned URL.
+- Code lambda_handler_code_01.py using the CODE tab in the Lambda console.
+- Click on Deploy.
+- Call the Lambda function directly from the browser to trigger the default flow.
+- Create a local venv.
+- Activate the venv.
+- Install requests
+- Code get_request.py (remember to update it with the actual URL for the Lambda function)
+- Modify your Lambda app to handle a POST request (lambda_handler_code_02.py).
+- Locally, code post_request.py.
+- Modify CODE to match lambda_handler_code_03.py, this will handle both GET and POST requests.
+- Locally, code double_test.py.
+- Run double_test.py, there will be an error due to unsupported HTTP method.
+- See console output of Lambda function:
+    - Add print("Received event:", json.dumps(event) to lambda_handler_code_03.py for debug.
+    - Click on Monitor tab.
+    - Click on View CloudWatch logs.
+    - Scroll down to Log streams and click on the latest event.
+    - Look for "received_event" and examine the shape of the event itself.
+- Modify capturing the method in lambda_handler_code_03.py as follows:
+    method = event.get("requestContext", {}).get("http", {}).get("method", "UNKNOWN")
+- Run double_test.py again, it should pass.
+- Show how to delete the Lambda function.
+- Assignment 8: https://github.com/UWC2-PYTHON/330-su25-assignment-08-ldconejo
+    - Note that you will need to refactor your Flask application from assignment 7 into a lambda function.
+

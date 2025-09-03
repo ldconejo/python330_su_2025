@@ -1,0 +1,41 @@
+- Do a quick discussion on when containers could become a better option than virtual environments:
+    - The quick version: If there are non-Python dependencies, a container is a better option.
+    - Note that a container is different from a virtual machine.
+- Create a virtual environment, we will use that first.
+- Activate virtual environment.
+- mkdir docker_project
+- cd docker_project
+- touch app.py
+- Code app.py
+- pip install flask gunicorn
+- python app.py
+- Show the server running on a browser.
+- python -m pip freeze > requirements.txt --> This is a little different, as we'll have other modules installed.
+- Deactivate virtual environment.
+- touch Dockerfile
+- Code Dockerfile
+- Python versions supported by Docker: https://hub.docker.com/_/python
+    - It's actually more useful to look at the version numbers here: https://github.com/docker-library/python/blob/19c93d12094b07ecc21f67144a309c2fa0a10ef0/3.14-rc/trixie/Dockerfile
+        - You will see the major versions that you can call from your Docker file (3.10, 3.11, 3.12, etc.)
+    - Note that for 3.14, the version is 3.14-rc (Release Candidate).
+- Build and run your container:
+
+    docker build -t flask-docker-app .
+    docker run -p 5001:5001 flask-docker-app
+- Note that the build step is to run your container locally, Heroku will need to build it again in the target dyno.
+- Heroku setup:
+    git init 
+    heroku login
+    heroku container:login
+    heroku create my-docker-flask-app
+    heroku stack:set container -a my-docker-flask-app --> This step is critical, otherwise, Heroku will assume this is a regular project.
+    git remote -v
+- git checkout -b dev
+- touch heroku.yml
+- Code heroku.yml
+- git add .
+- git commit -m "Ready to deploy my container"
+- git push heroku dev:main
+- heroku open
+- Assignment 7: https://github.com/UWC2-PYTHON/330-su25-assignment-07-ldconejo
+    - Explain how the routes in Dockerfile could change because of the directory structure.
