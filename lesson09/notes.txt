@@ -1,0 +1,44 @@
+- This week marks the start of the final project (2 weeks).
+    - The spirit of the assignment is to show a fullstack project that does not require JavaScript or CSS knowledge.
+- Create and populate requirements.txt
+- Explain the purpose of the elements in requirements.txt:
+    - fastapi[standard] --> Installs optional dependencies defined by FastAPI.
+    - httpx: Alternative to the requests module, supports both synchronous and async requests.
+    - Jinja2: Template engine.
+    - jinja2_fragments: Allows for templates that refresh only specific sections.
+    - pytailwindcss: Integrate Tailwind CSS into a Python project without requiring Node.js.
+    - pytest: Major testing module in Python.
+    - tinydb: Lightweight, pure-Python, document-oriented database (data is stored as Python dictionaries). By default, it stores data as a JSON file.
+    - aiofiles: Module used for file support for asyncio applications.
+    - pillow: Module for image processing and manipulation.
+- Create a virtual environment: python -m venv finalproject_venv.
+- Activate environment: source finalproject_venv/bin/activate
+- Install requirements: python -m pip install -r requirements.txt
+- Freeze requirements: python -m pip freeze > requirements.txt
+    - Show requirements.txt, now with accompanying modules and version numbers.
+- mkdir finalproject
+- cd finalproject
+- Create main.py file (code it with main_01.pycd)
+- Run the initial server: fastapi dev main.py
+    - Remind them that FastAPI comes with Swagger and /doc
+- Create folders for static and templates at root level.
+- Replace the code in main.py with the one in main_02.py.
+- Inside for /templates, create photo_journal.html.jinja2 and code it (be patient, it's a long template).
+- Run the development server again: fastapi dev main.py (keep the browser tab open to compare in a moment).
+- Talk about how TailwindCSS lets you define the look and feel of your page directly in the template. Line 12 of the template file is a good example.
+- Show the TailwindCSS documentation here: https://tailwindcss.com/docs/installation/using-vite
+- Run tailwindcss on the commandline to complete the installation of the corresponding binary.
+- Create /static/src folder and create the file tw.css inside of it and code it.
+- Run the following command (separate terminal, remember to activate your venv there as well) to have tailwindcss monitor your tw.css to reflect changes in your HTML template:
+    tailwindcss -i static/src/tw.css -o static/css/styles.css --watch
+- Show the freshly created /static/css/styles.css
+- Run the project again: fastapi dev main.py (it looks a lot better now).
+- Create a /static/images folder.
+- Add the code on main_03.py as a new endpoint to main.py
+- Run your server again: fastapi dev main.py --> Show them the error on the console.
+- Download htmx.min.js from here: https://canvas.uw.edu/courses/1812006/files/136570381?wrap=1 and place it in /static/src
+- Run your server again: fastapi dev main.py
+- Review the code in /templates/photo_journal.html.jinja2 to see how HTMX was used to submit an HTTP request to get the photo uploaded.
+    - Show attributes prefaced with hx-
+- Review Assignment 9: https://github.com/UWC2-PYTHON/330-su25-assignment-09-ldconejo
+- We will use class on week 10 to showcase CI/CD using GitHub Actions.
