@@ -1,0 +1,90 @@
+<!-- templates/photo_journal.html.jinja2 -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Photo Journal</title>
+      <link href="{{ url_for('static', path='/css/styles.css') }}" rel="stylesheet">
+      <script src="{{ url_for('static', path='/src/htmx.min.js') }}"></script>
+    </head>
+    <body>
+      <nav class="relative flex w-full flex-wrap items-center justify-between bg-zinc-50 py-2 shadow-dark-mild dark:bg-neutral-700 lg:py-4">
+      <div class="flex w-full flex-wrap items-center justify-between px-3">
+        <div class="ms-2">
+          <a class="text-xl text-black dark:text-white" href="#">Photo Journal</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="grid grid-cols-12 gap-4 mt-4">
+        <!-- Column -->
+        <div class="col-span-12 md:col-span-4 mx-4">
+            <h1 class="text-xl">Add new photo</h1>
+            <form hx-post="/post-photo"
+                  hx-target="#photos"
+                  hx-swap="innerHTML"
+                  hx-on::after-request="this.reset()"
+                  enctype="multipart/form-data">
+              <div>
+                <label for="photo_upload" class="block my-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
+                <input type="file"
+                       id="photo_upload"
+                       name="photo_upload"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:px-3  file:py-[0.32rem] file:text-surface file:dark:text-white" required/>
+              </div>
+              <div>
+                <label for="entry" class="block my-2 text-sm font-medium text-gray-900 dark:text-white">Entry</label>
+                <textarea id="entry"
+                          name="entry"
+                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..." required></textarea>
+              </div>
+              <button type="submit"
+                      class="mt-4 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  Save entry
+              </button>
+            </form>
+        </div>
+        <!-- Column -->
+        <div class="col-span-12 md:col-span-8 mx-4">
+          <div class="flex justify-between">
+          <h1 class="text-xl mb-4">My photos</h1>
+          </div>
+            <div id="photos">
+                {% block photos %}
+                {% if invalid_image_file %}
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    <span class="font-medium">Invalid image file!</span> Upload a valid image file (PNG, JPG, GIF).
+                </div>
+                {% endif %}
+                {% if photos %}
+                    {% for photo in photos %}
+                        <div id="photo-{{ photo.doc_id }}"
+                             class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-4">
+                            <div class="flex justify-center">
+                                <img class="rounded-t-lg transition" src="{{ url_for('static', path=photo.file_path) }}" alt="" />
+                            </div>
+                            <div class="flex">
+                                <div class="p-5 flex-grow">
+                                    <p class="mb-2 text-sm leading-6 text-gray-600">Uploaded {{ photo.uploaded_at }}</p>
+                                    <div id="photo-edit-fields-{{ photo.doc_id }}">
+                                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 cursor-pointer">{{ photo.entry }}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                <svg viewBox="0 0 448 512"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     class="h-6 mt-4 mr-4 fill-red-400 cursor-pointer ml-auto">
+                                    <path d="M432 80h-82.38l-34-56.75C306.1 8.827 291.4 0 274.6 0H173.4C156.6 0 141 8.827 132.4 23.25L98.38 80H16C7.125 80 0 87.13 0 96v16C0 120.9 7.125 128 16 128H32v320c0 35.35 28.65 64 64 64h256c35.35 0 64-28.65 64-64V128h16C440.9 128 448 120.9 448 112V96C448 87.13 440.9 80 432 80zM171.9 50.88C172.9 49.13 174.9 48 177 48h94c2.125 0 4.125 1.125 5.125 2.875L293.6 80H154.4L171.9 50.88zM352 464H96c-8.837 0-16-7.163-16-16V128h288v320C368 456.8 360.8 464 352 464zM224 416c8.844 0 16-7.156 16-16V192c0-8.844-7.156-16-16-16S208 183.2 208 192v208C208 408.8 215.2 416 224 416zM144 416C152.8 416 160 408.8 160 400V192c0-8.844-7.156-16-16-16S128 183.2 128 192v208C128 408.8 135.2 416 144 416zM304 416c8.844 0 16-7.156 16-16V192c0-8.844-7.156-16-16-16S288 183.2 288 192v208C288 408.8 295.2 416 304 416z"/>
+                                </svg>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

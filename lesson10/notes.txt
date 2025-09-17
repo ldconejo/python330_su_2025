@@ -1,0 +1,68 @@
+- Note that requirements.txt has been moved inside of final_project.
+- python -m venv finalproject_venv
+- cd final_project
+- python -m pip install -r requirements.txt
+- Run local server with uvicorn: uvicorn main:app
+- git init . (inside of finalproject)
+- git remote -v to show empty remotes.
+- Go to Heroku and show active Eco Dynos Plan.
+- heroku login
+- heroku create python330-project
+- git remote -v
+- python -m pip install gunicorn --> Will be needed in Procfile
+- python -m pip freeze > requirements.txt 
+- touch Procfile
+- Code Procfile
+- touch .python-version
+- Code .python-version
+- git add .
+- git commit -m "Initial commit"
+- git push heroku main:main
+- In GitHub, create a new repo.
+    python-330-lesson10
+    public
+    No .gitignore (can add later)
+    No license
+- Add as a remote, for example: git remote add github https://github.com/ldconejo/python-330-lesson10.git
+- git push --force github
+- Back to GitHub:
+    - Click on "Actions".
+    - Search for "Python" and selec "Python application".
+    - Change the default .yml file to use Python 3.13 (or the one used for the project)
+- Back in the project  
+    - git checkout -b dev
+    - Install Flake8 and go through the errors:
+        - python -m pip install flake8
+        - python -m pip freeze > requirements.txt
+    - Don't use Flake8 just yet!
+    - git add .
+    - git commit -m "Changed requirements.txt"
+    - git push github dev:dev
+- Back on GitHub:
+    - Create a pull request.
+    - Show the details of CI running.
+    - Flake8 and Pytest will fail (PEP8 and no tests enabled).
+- Install Flake8 and go through the errors:
+    - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --> This should pass (no syntax errors or undefined names).
+    - flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        - Fix the errors.
+- Touch and code test_main.py.
+- Run pytest:
+    - Deprecation warning, will require replacing the last line with:     return templates.TemplateResponse(request, name="photo_journal.html.jinja2", context=context, block_name="photos")
+- git status
+- git add main.py test_main.py
+- git commit -m "Added tests and fixed flake8 issues"
+- git push github dev:dev
+- Show pull request again.
+- Go back to Heroku.
+- Go into the dyno, then "Deploy".
+- Select "GitHub - Connect to GitHub".
+- Search for the repo (python-330-lesson10) and connect.
+- Show the selected branch and check "Wait for GitHub checks to pass before deploy".
+- Click on "Enable Automatic Deploys".
+- Click on "more", then "View logs".
+- Go back to GitHub and merge the pull request.
+    - Show the checks running again on GitHub.
+- Go back to Heroku and show the logs.
+    - Might need to wait a few seconds.
+- Open app one last time.
